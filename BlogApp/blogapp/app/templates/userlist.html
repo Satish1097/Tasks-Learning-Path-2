@@ -1,0 +1,22 @@
+{% extends "adminbase.html" %}
+
+{% block container %}
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>UserName</th>
+        <th>Email </th>
+        <th>Action</th>
+    </tr>
+    {% for i in users_paginator %}
+    <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.username}}</td>
+        <td>{{i.email}}</td>
+        <td><button><a href="{% url 'blockuser' i.id %}">Block</a></button></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="posts">
+    {% for post in posts %}
+    <div class="post">
+        <p>{{post.Title}}</p>
+        <div class="img">
+            <img src="{{post.file.url}}" alt="img">
+        </div>
+        <div class="description">
+            <p>{{post.Description|safe}}</p>
+        </div>
+        <div class="action">
+            <button><a href="{% url 'editpost' post.id %}">Edit</a></button>
+            <button><a href="{% url 'deletepost' post.id %}">Delete</a></button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

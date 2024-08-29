@@ -1,0 +1,10 @@
+asgiref==3.8.1
+Django==5.0.7
+django-crispy-forms==2.3
+django-debug-toolbar==4.4.6
+django-extensions==3.2.3
+djhtml==3.0.6
+pillow==10.4.0
+sqlparse==0.5.1
+tzdata==2024.1
+ckeditor

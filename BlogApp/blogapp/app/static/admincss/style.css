@@ -1,0 +1,154 @@
+.posts {
+    display: flex;                   
+    flex-wrap: wrap;                
+    justify-content: space-between;  
+    padding: 20px;                  
+}
+
+.post {
+    background-color: #f9f9f9;      
+    border: 1px solid #ddd;        
+    border-radius: 8px;             
+    margin: 10px;                   
+    width: calc(32% - 20px);     
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    overflow: hidden;                
+}
+
+@media (max-width: 768px) {
+    .post {
+        width: calc(48% - 20px);               
+    }
+}
+
+@media (max-width: 480px) {
+    .post {
+        width: calc(100% - 20px);               
+    }
+}
+
+.img img {
+    width: 100%;              
+    height: auto;           
+}
+
+.description {
+    padding: 15px;           
+}
+
+.description p {
+    margin: 0;               
+}
+/* Center the pagination and style the links */
+.pagination {
+    text-align: center;      /* Center align the pagination */
+    margin-top: 20px;         /* Add space from the content above */
+}
+
+.pagination a, .pagination strong {
+    display: inline-block;   /* Display the links as blocks */
+    margin: 0 5px;            /* Add some space between the links */
+    padding: 5px 10px;        /* Add padding to the links */
+    text-decoration: none;    /* Remove underlines from links */
+    color: #007bff;           /* Set the default color for the links */
+    border: 1px solid #007bff; /* Add a border around the links */
+    border-radius: 5px;       /* Add rounded corners to the links */
+    transition: all 0.3s;     /* Add a smooth transition on hover */
+}
+
+.pagination a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination strong {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+}
+
+
+/*=======================postedit admin==========================*/
+.createpost{
+    max-width: 600px;
+    height: 75vh;
+    background-color: rgb(209, 234, 241);
+    margin: 50px auto;
+    text-align: center;
+    border-radius: 5px;
+}
+.createpost form label{
+    display: block;
+}
+.createpost form input{
+    width: 90%;
+    padding: 10px;
+}
+ .createpost h1{
+    padding-top: 20px;
+ }
+
+/*++++++++++++++++++++++++++++Admin Login==============================*/
+/* CSS styles for the admin login form */
+
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-top: 40px;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-block {
+    margin-bottom: 20px;
+}
+
+.form-block label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-block input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-block button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-block button:hover {
+    background-color: #0056b3;
+}
+
+
+/*============================UserList==================================*/
+table{
+    width: 80%;
+    margin: 20px auto;
+    border: 2px solid gray;
+}
+table tr th{
+    height: 35px;
+    border: 2px solid gray;
+}
+table tr td{
+    border: 1px solid gray;
+    height: 30px;
+}
