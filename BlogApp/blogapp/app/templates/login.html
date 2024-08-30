@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="login">
-    <h1>Login Here</h1>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <input type="text" name="username" id="username" placeholder="UserName">
-        <input type="password" name="password" placeholder='password'>
-        <input type="submit">
-    </form>
-    <a href="registration">New User</a>
-</div>
+    <div class="login">
+        <h1>Login Here</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" id="username" placeholder="UserName">
+            <input type="password" name="password" placeholder='password'>
+            <input type="submit">
+        </form>
+        <a href="registration">New User</a>
+    </div>
 {% endblock content %}

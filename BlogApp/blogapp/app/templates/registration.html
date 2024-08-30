@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="registration">
-    <h1>Registration Form</h1>
-    <form action="" method='POST'>
-        {% csrf_token %}
-        {{form}}
-        <input type="submit">
-    </form>
-    <a href="login">Have an Account</a>
-</div>
+    <div class="registration">
+        <h1>Registration Form</h1>
+        <form action="" method='POST'>
+            {% csrf_token %}
+            {{form}}
+            <input type="submit">
+        </form>
+        <a href="login">Have an Account</a>
+    </div>
 
 {% endblock content %}

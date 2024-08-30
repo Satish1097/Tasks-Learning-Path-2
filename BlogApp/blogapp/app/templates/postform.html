@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="createpost">
-    <h1>Post Your Blog</h1>
-    <form action="" method="POST" enctype='multipart/form-data'>
-        {% csrf_token %}
-        {{form.media}}
-        {{form}}
-        <input type="submit">
-    </form>
-</div>
+    <div class="createpost">
+        <h1>Post Your Blog</h1>
+        <form action="" method="POST" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {{form.media}}
+            {{form}}
+            <input type="submit">
+        </form>
+    </div>
 {% endblock content %}

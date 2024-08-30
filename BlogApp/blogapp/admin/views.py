@@ -4,8 +4,7 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from app.forms import EditPost
 from django.contrib.auth.models import User
-
-# Create your views here.
+from django.db.models.functions import Lower
 
 
 def login_admin(request):
@@ -19,8 +18,8 @@ def login_admin(request):
                 request.session["user"] = admin_user.id
                 return redirect("adminpanel")
             else:
-                message = "Invalid credentials"
-                return render(request, "login_admin.html", {"message": message})
+                messages.error(request, "Invalid Credential")
+                return render(request, "login_admin.html")
         except admins.DoesNotExist:
             message = "Invalid credentials"
             return render(request, "login_admin.html", {"message": message})
@@ -97,11 +96,39 @@ def deletepost(request, post_id):
 def userlist(request):
     user = request.session.get("user")
     if user is not None:
-        users = User.objects.exclude(is_superuser=True).filter(is_active=True)
+        users = (
+            User.objects.exclude(is_superuser=True)
+            .filter(is_active=True)
+            .order_by(Lower("username"))
+        )
         paginator = Paginator(users, 10)
         page_number = request.GET.get("page")
         users_paginator = paginator.get_page(page_number)
-        return render(request, "userlist.html", {"users_paginator": users_paginator})
+        return render(
+            request,
+            "userlist.html",
+            {
+                "users_paginator": users_paginator,
+            },
+        )
+    else:
+        return redirect("login_admin")
+
+
+def blockuserlist(request):
+    user = request.session.get("user")
+    if user is not None:
+        blocked_users = User.objects.filter(is_active=False).order_by(Lower("username"))
+        paginator = Paginator(blocked_users, 10)
+        page_number = request.GET.get("page")
+        blocked_users_paginator = paginator.get_page(page_number)
+        return render(
+            request,
+            "blockeduser.html",
+            {
+                "blocked_users_paginator": blocked_users_paginator,
+            },
+        )
     else:
         return redirect("login_admin")
 
@@ -114,6 +141,22 @@ def blockuser(request, user_id):
             user.is_active = False
             user.save()
             messages.success(request, "Blocked")
+            return redirect("blockuserlist")
+        except User.DoesNotExist:
+            messages.error(request, "user does not exist")
+            return redirect("adminpanel")
+    else:
+        return redirect("login_admin")
+
+
+def unblockuser(request, user_id):
+    user = request.session.get("user")
+    if user is not None:
+        try:
+            user = User.objects.get(id=user_id)
+            user.is_active = True
+            user.save()
+            messages.success(request, "unblocked")
             return redirect("userlist")
         except User.DoesNotExist:
             messages.error(request, "user does not exist")

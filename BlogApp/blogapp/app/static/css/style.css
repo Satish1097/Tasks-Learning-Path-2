@@ -1,305 +1,438 @@
-         body{
-            text-decoration: none;
-            list-style: none;
-            height: 100%;
-            width: 100%;
-        }
-        
-        * {
-            box-sizing: border-box;
-            padding: 0;
-            margin: 0;
-        }
+         body {
+             text-decoration: none;
+             list-style: none;
+             height: 100%;
+             width: 100%;
+             background-color: #5F5F5D;
+         }
 
-        .navbar {
-            height: 12vh;
-            width: 100%;
-            border-bottom: 1px solid #ccc;
-            display: flex;
-            background-color: #FFFFFF;
-            justify-content: space-between;
-        }
+         * {
+             box-sizing: border-box;
+             padding: 0;
+             margin: 0;
+             text-decoration: none;
+             list-style: none;
+         }
 
-        .navbar .logo {
-            width: 20%;
-            margin-left: 30px;
-        }
+         .navbar {
+             height: 12vh;
+             width: 100%;
+             border-bottom: 1px solid #ccc;
+             display: flex;
+             background-color: #3C393A;
+             justify-content: space-between;
+             color: #ffff;
+         }
 
-        .navbar .logo h1 {
-            padding-top: 25px;
-        }
+         .navbar #menubar {
+             color: white;
+             display: none;
+         }
 
-        .navbar .menu {
-            width: 30%;
-            position: relative;
-            float: right;
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-        }
+         .navbar .logo {
+             width: 20%;
+             margin-left: 30px;
+         }
 
-        .navbar .menu li {
-            list-style: none;
-            padding-left: 50px;
-            padding-top: 35px;
-        }
+         .navbar .logo h1 {
+             padding-top: 20px;
+         }
 
-        .navbar .menu li a {
-            text-decoration: none;
-            color: black;
-            font-size: 18px;
-        }
+         .navbar .menu {
+             width: 30%;
+             position: relative;
+             float: right;
+             display: flex;
+             justify-content: space-between;
+             text-align: center;
+         }
 
-        .navbar .auth {
-            width: 20%;
-            right: 0;
-        }
+         .navbar .menu li {
+             list-style: none;
+             padding-top: 30px;
+         }
 
-        .navbar .auth button {
-            height: 45px;
-            width: 120px;
-            font-size: 18px;
-            background-color: rgb(172, 172, 234);
-            border: 0px;
-            outline: 0px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        .navbar .auth button a{
-            text-decoration: none;
-            color: black;
-        } 
+         .navbar .menu li a {
+             text-decoration: none;
+             color: white;
+             font-size: 18px;
+         }
 
+         .navbar .auth {
+             min-width: 10%;
+             right: 0;
+         }
 
-/*=======================Registration form=========================*/
+         .navbar .auth button {
+             height: 40px;
+             width: 100px;
+             font-size: 18px;
+             background-color: rgb(172, 172, 234);
+             border: 0px;
+             outline: 0px;
+             border-radius: 5px;
+             margin-top: 20px;
+             margin-right: 30px;
+         }
 
-        .registration{
-            position: relative;
-            max-width: 500px;
-            height: 75vh;
-            margin: auto;
-            background-color: rgb(209, 234, 241);
-            text-align: center;
-            top: 30px;
-            border-radius: 10px;
-        }
-        .registration  h1{
-            padding-top: 10px ;
-        }
+         .navbar .auth button a {
+             text-decoration: none;
+             color: black;
+         }
 
-        .registration  form {
-            height: 90%;
-            width: 100%;
-            margin-top: 5%;
-        }
-        .registration form label{
-            display: block;
-            text-align: center;
-        }
-        .registration form input{
-            width: 90%;
-            /* margin-left: 5%; */
-            padding: 15px;
-        }
-        .registration form input[Type='submit']{
-            width: 100px;
-            height: 40px;
-            background-color: rgb(190, 190, 241);
-            margin-top: 15px;
-            border: 0;
-            outline: 0;
-            border-radius: 5px;
-            font-size: 16px;
-            padding: 0;
-        }
+         .footer {
+             height: 30vh;
+             width: 100%;
+             background-color: #3C393A;
+             display: flex;
+         }
 
-/*============================Login==============================*/
+         .footer .left {
+             width: 50%;
+             text-align: center;
+         }
 
-.login{
-    height: 50vh;
-    max-width: 400px;
-    margin: 30px auto;
-    background-color: rgb(209, 234, 241);
-    text-align: center;
-    border-radius: 10px;
-}
-.login form input{
-    width: 90%;
-    height: 40px;
-    padding: 20px;
-    margin-top: 20px;
-}
- .login h1{
-    padding-top: 50px;
-    text-align: center;
- }
- .login a{
-    text-decoration: none;
- }
- .login form input[Type="submit"]{
-    width: 120px;
-    height: 40px;
-    border: 0;
-    outline: 0;
-    border-radius: 5px;
-    font-size: 16px;
-    padding: 0;
-    background-color: rgb(190, 190, 241);
+         .footer .left ul li {
+             padding-top: 10px;
+         }
 
- }
+         .footer .left ul li a {
+             color: #ffff;
+         }
 
+         .footer .right {
+             width: 50%;
+         }
 
-/*==============================Postform================================*/
+         .footer .right h1 {
+             margin: 70px;
+         }
 
-.createpost{
-    max-width: 600px;
-    height: 75vh;
-    background-color: rgb(209, 234, 241);
-    margin: 50px auto;
-    text-align: center;
-    border-radius: 5px;
-}
-.createpost form label{
-    display: block;
-}
-.createpost form input{
-    width: 90%;
-    padding: 10px;
-}
- .createpost h1{
-    padding-top: 20px;
- }
+         .bottom {
+             width: 100%;
+             height: 10vh;
+             background-color: #3C393A;
+             text-align: center;
+             border-top: 1px solid gray;
+         }
 
-/*=======================Home Post===================*/
+         .bottom p {
+             color: #fff;
+             padding-top: 1.5rem;
+             font-size: 1rem;
+         }
 
-.posts {
-    display: flex;                   
-    flex-wrap: wrap;                
-    justify-content: space-between;  
-    padding: 20px;                  
-}
+         @media (max-width: 768px) {
+             .navbar #menubar {
+                 display: block;
+                 font-size: 25px;
+                 background-color: transparent;
+                 border: 0;
+                 outline: 0;
+                 margin-left: 30px;
+                 width: 50px;
+             }
 
-.post {
-    background-color: #f9f9f9;      
-    border: 1px solid #ddd;        
-    border-radius: 8px;             
-    margin: 10px;                   
-    width: calc(32% - 20px);     
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-    overflow: hidden;                
-}
+             .navbar .logo {
+                 margin-left: 0px;
+             }
 
-@media (max-width: 768px) {
-    .post {
-        width: calc(48% - 20px);               
-    }
-}
+             .navbar .menu {
+                 display: block;
+                 position: absolute;
+                 max-width: 350px;
+                 background-color: #fff;
+                 top: 12vh;
+                 height: 250px;
+                 left: -100%;
+             }
 
-@media (max-width: 480px) {
-    .post {
-        width: calc(100% - 20px);               
-    }
-}
+             .navbar .menu li a {
+                 color: black;
+             }
 
-.img img {
-    width: 100%;              
-    height: auto;           
-}
+             .navbar .auth button {
+                 height: 35px;
+                 width: 90px;
+                 font-size: 16px;
+             }
+         }
 
-.description {
-    padding: 15px;           
-}
+         @media (max-width: 600px) {}
 
-.description p {
-    margin: 0;               
-}
-/* Center the pagination and style the links */
-.pagination {
-    text-align: center;      /* Center align the pagination */
-    margin-top: 20px;         /* Add space from the content above */
-}
+         /*=======================Registration form=========================*/
 
-.pagination a, .pagination strong {
-    display: inline-block;   /* Display the links as blocks */
-    margin: 0 5px;            /* Add some space between the links */
-    padding: 5px 10px;        /* Add padding to the links */
-    text-decoration: none;    /* Remove underlines from links */
-    color: #007bff;           /* Set the default color for the links */
-    border: 1px solid #007bff; /* Add a border around the links */
-    border-radius: 5px;       /* Add rounded corners to the links */
-    transition: all 0.3s;     /* Add a smooth transition on hover */
-}
+         .registration {
+             position: relative;
+             max-width: 500px;
+             height: 75vh;
+             margin: auto;
+             background-color: rgb(209, 234, 241);
+             text-align: center;
+             top: 30px;
+             border-radius: 10px;
+         }
 
-.pagination a:hover {
-    background-color: #007bff;
-    color: #fff;
-}
+         .registration h1 {
+             padding-top: 10px;
+         }
 
-.pagination strong {
-    background-color: #007bff;
-    color: #fff;
-    border: 1px solid #007bff;
-    border-radius: 5px;
-}
+         .registration form {
+             height: 90%;
+             width: 100%;
+             margin-top: 5%;
+         }
 
+         .registration form label {
+             display: block;
+             text-align: center;
+         }
 
-/*============================Mypost=======================*/
+         .registration form input {
+             width: 90%;
+             /* margin-left: 5%; */
+             padding: 15px;
+         }
 
-.posts .post .action{
-    display: flex;
-    justify-content: space-around;
-}
-.posts .post .action button{
-    width: 90px;
-    height: 35px;
-    margin-top: 15px;
-}
+         .registration form input[Type='submit'] {
+             width: 100px;
+             height: 40px;
+             background-color: rgb(190, 190, 241);
+             margin-top: 15px;
+             border: 0;
+             outline: 0;
+             border-radius: 5px;
+             font-size: 16px;
+             padding: 0;
+         }
+
+         /*============================Login==============================*/
+
+         .login {
+             height: 50vh;
+             max-width: 400px;
+             margin: 30px auto;
+             background-color: rgb(209, 234, 241);
+             text-align: center;
+             border-radius: 10px;
+         }
+
+         .login form input {
+             width: 90%;
+             height: 40px;
+             padding: 20px;
+             margin-top: 20px;
+         }
+
+         .login h1 {
+             padding-top: 50px;
+             text-align: center;
+         }
+
+         .login a {
+             text-decoration: none;
+         }
+
+         .login form input[Type="submit"] {
+             width: 120px;
+             height: 40px;
+             border: 0;
+             outline: 0;
+             border-radius: 5px;
+             font-size: 16px;
+             padding: 0;
+             background-color: rgb(190, 190, 241);
+
+         }
 
 
+         /*==============================Postform================================*/
 
-/*++++++++++++++++++++++++++++Admin Login==============================*/
-/* CSS styles for the admin login form */
+         .createpost {
+             max-width: 600px;
+             height: 75vh;
+             background-color: rgb(209, 234, 241);
+             margin: 50px auto;
+             text-align: center;
+             border-radius: 5px;
+         }
 
-.form-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
+         .createpost form label {
+             display: block;
+         }
 
-.form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
+         .createpost form input {
+             width: 90%;
+             padding: 10px;
+         }
 
-.form-block {
-    margin-bottom: 20px;
-}
+         .createpost h1 {
+             padding-top: 20px;
+         }
 
-.form-block label {
-    display: block;
-    margin-bottom: 5px;
-}
+         /*=======================Home Post===================*/
 
-.form-block input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+         .posts {
+             display: flex;
+             flex-wrap: wrap;
+             justify-content: space-between;
+             padding: 20px;
+             min-height: 50vh;
+         }
 
-.form-block button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+         .posts .nopost {
+             text-align: center;
+             margin: 50px auto;
+             color: #ffff;
+         }
 
-.form-block button:hover {
-    background-color: #0056b3;
-}
+         .posts .nopost .createbutton {
+             height: 40px;
+             width: 120px;
+             margin-top: 20px;
+         }
+
+         .post {
+             background-color: #f9f9f9;
+             border-radius: 3px;
+             margin: 10px;
+             width: calc(32% - 20px);
+             box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+             overflow: hidden;
+             flex-grow: 1;
+         }
+
+         @media (max-width: 768px) {
+             .post {
+                 width: calc(48% - 20px);
+             }
+         }
+
+         @media (max-width: 480px) {
+             .post {
+                 width: calc(100% - 20px);
+             }
+         }
+
+         .img img {
+             width: 100%;
+             height: auto;
+         }
+
+         .description {
+             padding: 15px;
+         }
+
+         .description p {
+             margin: 0;
+         }
+
+         /* Center the pagination and style the links */
+         .pagination {
+             text-align: center;
+             /* Center align the pagination */
+             margin-top: 20px;
+             margin-bottom: 50px;
+             /* Add space from the content above */
+         }
+
+         .pagination a,
+         .pagination strong {
+             display: inline-block;
+             /* Display the links as blocks */
+             margin: 0 5px;
+             /* Add some space between the links */
+             padding: 5px 10px;
+             /* Add padding to the links */
+             text-decoration: none;
+             /* Remove underlines from links */
+             color: #007bff;
+             /* Set the default color for the links */
+             border: 1px solid #007bff;
+             /* Add a border around the links */
+             border-radius: 5px;
+             /* Add rounded corners to the links */
+             transition: all 0.3s;
+             /* Add a smooth transition on hover */
+         }
+
+         .pagination a:hover {
+             background-color: #007bff;
+             color: #fff;
+         }
+
+         .pagination strong {
+             background-color: #007bff;
+             color: #fff;
+             border: 1px solid #007bff;
+             border-radius: 5px;
+         }
+
+
+         /*============================Mypost=======================*/
+
+         .posts .post .action {
+             display: flex;
+             justify-content: space-around;
+         }
+
+         .posts .post .action button {
+             width: 90px;
+             height: 35px;
+             margin-top: 15px;
+             margin-bottom: 10px;
+         }
+
+         .posts .post .action button:hover {
+             background-color: #5F5F5D;
+             color: white;
+         }
+
+
+
+         /*++++++++++++++++++++++++++++Admin Login==============================*/
+         /* CSS styles for the admin login form */
+
+         .form-container {
+             max-width: 400px;
+             margin: 0 auto;
+             padding: 20px;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+             background-color: #f9f9f9;
+         }
+
+         .form-container h2 {
+             text-align: center;
+             margin-bottom: 20px;
+         }
+
+         .form-block {
+             margin-bottom: 20px;
+         }
+
+         .form-block label {
+             display: block;
+             margin-bottom: 5px;
+         }
+
+         .form-block input {
+             width: 100%;
+             padding: 8px;
+             box-sizing: border-box;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+         }
+
+         .form-block button {
+             padding: 10px 15px;
+             background-color: #007bff;
+             color: #fff;
+             border: none;
+             border-radius: 5px;
+             cursor: pointer;
+         }
+
+         .form-block button:hover {
+             background-color: #0056b3;
+         }

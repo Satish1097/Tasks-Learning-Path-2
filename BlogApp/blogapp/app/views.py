@@ -2,15 +2,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import registerationForm, PostForm, EditPost
 from django.contrib import messages
 from django.contrib import auth
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import authenticate
 from django.core.paginator import Paginator
-from django.contrib.auth.models import User
-from .models import Post, Profile, admins
+from .models import Post
 
 
 def index(request):
     posts = Post.objects.filter(block_status=False).order_by("-created_on")
-    paginator = Paginator(posts, 3)
+    paginator = Paginator(posts, 5)
     page_number = request.GET.get("page")
     posts_paginator = paginator.get_page(page_number)
     return render(
@@ -142,6 +141,14 @@ def error_400_view(request, exception):
 def error_500_view(request):
     status_code = 500
     message = "Server Error"
+    return render(
+        request, "errorpage.html", {"status_code": status_code, "message": message}
+    )
+
+
+def error_401_view(request):
+    status_code = 401
+    message = "Unauthorized User"
     return render(
         request, "errorpage.html", {"status_code": status_code, "message": message}
     )

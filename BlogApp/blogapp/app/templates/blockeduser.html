@@ -1,0 +1,24 @@
+{% extends "adminbase.html" %}
+
+{% block container %}
+<div class="users">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>UserName</th>
+            <th>Email </th>
+            <th>Action</th>
+        </tr>
+        {% for i in blocked_users_paginator %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.username}}</td>
+            <td>{{i.email}}</td>
+            <td><button style="background-color: rgb(88, 210, 88);"><a
+                        href="{% url 'unblockuser' i.id %}">Unblock</a></button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button class="button"><a href="userlist">Userlist</a></button>
+</div>
+{% endblock %}

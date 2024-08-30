@@ -1,24 +1,24 @@
 {% extends "adminbase.html" %}
 {% block container %}
-<div class="form-container">
-    <h2>Admin Login</h2>
-    <form method="post">
-        {% csrf_token %}
+    <div class="form-containeradmin">
+        <h2>Admin Login</h2>
+        <form method="post">
+            {% csrf_token %}
 
-        <div class="form-block">
-            <label for="username">Usename:</label>
-            <input type="text" name="username" required>
-        </div>
+            <div class="form-block">
+                <label for="username">Usename:</label>
+                <input type="text" name="username" required>
+            </div>
 
-        <div class="form-block">
-            <label for="password">Password:</label>
-            <input type="password" name="password" required>
-        </div>
+            <div class="form-block">
+                <label for="password">Password:</label>
+                <input type="password" name="password" required>
+            </div>
 
-        <button type="submit">Login</button>
-        {% if message %}
-        <p>{{ message }}</p>
-        {% endif %}
-    </form>
-</div>
+            <button type="submit" class="adminl">Login</button>
+            {% if message %}
+                <p>{{ message }}</p>
+            {% endif %}
+        </form>
+    </div>
 {% endblock container %}
