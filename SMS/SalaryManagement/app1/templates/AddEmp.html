@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block container %}
+<style>
+
+</style>
+<div class="AddEmpFormcontainer">
+    <h1>Add Employee</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit">
+    </form>
+</div>
+{% endblock container %}

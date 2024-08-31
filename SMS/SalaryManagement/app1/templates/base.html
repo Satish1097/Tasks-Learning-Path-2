@@ -1,0 +1,52 @@
+{% load static %}
+{% block header %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="https://kit.fontawesome.com/cb91b67637.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %}
+    <script>alert("{{message}}")</script>{% endif %}
+    {% endfor %}
+    {% endif %}
+    <div class="navbar">
+        <div class="menu">
+            <button id="menubar" onclick="openmenu()"><i class="fa-solid fa-bars-staggered" id="icon"></i></button>
+        </div>
+        <div class="logo">
+            <h1>Admin Dashboard</h1>
+        </div>
+        <ul class="list" id="menu">
+            <li><a href="#">Employee</a></li>
+            <li><a href="addemployee">Create</a></li>
+            <li><a href="CalculateSalary">Add Salary</a></li>
+            <li><a href="salaryview">Salary</a></li>
+            <li><a href="#">Home</a></li>
+        </ul>
+        {% if request.session.user %}
+        <button class="Login"><a href="logout">Logout</a></button>
+        {% else %}
+        <button class="Login">Login</button>
+        {% endif %}
+    </div>
+    {% endblock header %}
+    {% block container %}
+    {% endblock container %}
+
+    {% block footer %}
+
+</body>
+
+</html>
+{% endblock footer %}

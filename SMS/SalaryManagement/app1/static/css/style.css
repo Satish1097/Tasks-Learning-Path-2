@@ -1,0 +1,208 @@
+body {
+    background-color: #615f60;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    height: 12vh;
+    width: 100%;
+    background-color: #3C393A;
+    color: #ffff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar #menubar {
+    background-color: transparent;
+    font-size: 25px;
+    margin-left: 30px;
+    text-align: center;
+    color: #ffff;
+    border: 0;
+    outline: 0;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+.navbar .logo h1 {
+    padding-top: 20px;
+}
+
+.navbar .list {
+    position: absolute;
+    width: 300px;
+    height: 250px;
+    top: 12vh;
+    background-color: #3C393A;
+    text-align: center;
+    left: -100%;
+}
+
+.navbar .list li {
+    padding-top: 20px;
+    color: #ffff;
+}
+
+.navbar .list li a {
+    color: #ffff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbar .Login {
+    height: 40px;
+    width: 80px;
+    background-color: blueviolet;
+    color: #fff;
+    margin: 20px 30px 0 0px;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.navbar .Login a {
+    text-decoration: none;
+    color: #ffff;
+}
+
+/*==================Admin Login=====================*/
+.form-containeradmin {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.form-containeradmin h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.adminl {
+    height: 35px;
+    width: 100px;
+    margin-left: 35%;
+    background-color: rgb(82, 80, 80);
+    border: 0;
+    outline: 0;
+    color: white;
+    margin-top: 20px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+form input {
+    width: 90%;
+    height: 40px;
+    margin-left: 5%;
+}
+
+form label {
+    margin-left: 5%;
+}
+
+form .form-block {
+    margin-top: 20px;
+}
+
+/*=================================Add Employee================================*/
+.AddEmpFormcontainer {
+    max-width: 550px;
+    background-color: white;
+    margin: 30px auto;
+    border-radius: 7px;
+}
+
+.AddEmpFormcontainer form input {
+    padding: 20px;
+    width: 90%;
+}
+
+.AddEmpFormcontainer form input[Type='submit'] {
+    margin: 20px 0 20px 44%;
+    padding: 0;
+    width: 90px;
+    height: 40px;
+    border: 0;
+    outline: 0;
+    background-color: #3c3c3c;
+    color: #ffff;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+.AddEmpFormcontainer h1 {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    font-size: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*==================================Add Salary from =============================*/
+
+.addsalaryform {
+    max-width: 500px;
+    background-color: white;
+    margin: 30px auto;
+    border-radius: 7px;
+}
+
+.addsalaryform h1 {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    font-size: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.addsalaryform form input[Type='submit'] {
+    margin: 20px 0 20px 44%;
+    padding: 0;
+    width: 90px;
+    height: 40px;
+    border: 0;
+    outline: 0;
+    background-color: #3c3c3c;
+    color: #ffff;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+.addsalaryform form select {
+    width: 90%;
+    padding: 10px;
+    margin-left: 5%;
+}
+
+/*========================================salary detail===============================*/
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border: 2px solid gray;
+    background-color: #ffff;
+}
+
+table h1 {
+    text-align: center;
+}
+
+table tr th {
+    height: 35px;
+    border: 2px solid gray;
+}
+
+table tr td {
+    border: 1px solid gray;
+    height: 30px;
+}

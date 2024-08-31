@@ -1,0 +1,11 @@
+[
+    {
+        "model": "app1.admins",
+        "pk": "1",
+        "fields": {
+            "name": "Admin",
+            "email": "admin@email.com",
+            "password": "pbkdf2_sha256$720000$zWYuRR0WT5XDdWiyzKtNWy$P9w3Q3A/2Dt0nZdFh6WV4hC6TyoifFk2OGXkp+3sS+M="
+        }
+    }
+]
