@@ -69,13 +69,13 @@ class Salary(models.Model):
         return self.employee_id.name
 
 
-@receiver(post_save, sender=Salary)
-def calculatesalary(sender, instance, created, **kwargs):
-    if created:
-        instance.Total_salary_made = 10 * (
-            instance.total_working_days
-            - instance.total_leave_taken
-            + instance.overtime / 8
-        )
-        instance.is_salary_calculated = 1
-        instance.save()
+# @receiver(post_save, sender=Salary)
+# def calculatesalary(sender, instance, created, **kwargs):
+#     if created:
+#         instance.Total_salary_made = 10 * (
+#             instance.total_working_days
+#             - instance.total_leave_taken
+#             + instance.overtime / 8
+#         )
+#         instance.is_salary_calculated = 1
+#         instance.save()

@@ -99,3 +99,9 @@ class SalaryForm(forms.ModelForm):
         if not overtime:
             raise forms.ValidationError("overtime is required")
         return overtime
+
+
+# class EditEmpForm(forms.ModelForm):
+#     class Meta:
+#         model = Salary
+#         fields = ["name", "email", "mobile", "address", "base_salary"]
