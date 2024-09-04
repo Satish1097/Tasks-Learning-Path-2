@@ -21,5 +21,4 @@ class Command(BaseCommand):
             self.stdout.write(
                 self.style.SUCCESS(f"Salary calculated for ID {salary.id}")
             )
-
         self.stdout.write(self.style.SUCCESS("Salary calculation completed"))

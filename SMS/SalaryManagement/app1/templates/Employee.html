@@ -10,17 +10,38 @@
             <th>Base_Salary</th>
             <th>Action</th>
         </tr>
-        {% for i in employees %}
+        {% for i in employee_paginator %}
         <tr>
             <td>{{i.name}}</td>
             <td>{{i.email}}</td>
             <td>{{i.mobile}}</td>
             <td>{{i.address}}</td>
             <td>{{i.base_salary}}</td>
-            <td><button>Edit</button><button>Delete</button></td>
+            <td><button><a href="{% url 'EditEmployee' i.id %}">Edit</a></button><button><a
+                        href="{% url 'deleteEmployee' i.id %}">Delete</a></button></td>
 
         </tr>
         {% endfor %}
     </table>
+</div>
+<div class="pagination">
+    {% if employee_paginator.has_previous %}
+    <a href="?page={{ salary_paginator.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    <!-- Page numbers -->
+    <span>
+        {% for num in employee_paginator.paginator.page_range %}
+        {% if employee_paginator.number == num %}
+        <strong>{{ num }}</strong>
+        {% else %}
+        <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+        {% endfor %}
+    </span>
+
+    {% if employee_paginator.has_next %}
+    <a href="?page={{ salary_paginator.next_page_number }}">Next</a>
+    {% endif %}
 </div>
 {% endblock container %}

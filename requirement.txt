@@ -7,4 +7,8 @@ djhtml==3.0.6
 pillow==10.4.0
 sqlparse==0.5.1
 tzdata==2024.1
-ckeditor
+django-ckeditor
+django-celery-beat
+django-celery-result
+redis
+

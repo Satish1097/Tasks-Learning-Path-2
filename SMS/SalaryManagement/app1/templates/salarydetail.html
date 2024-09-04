@@ -6,22 +6,45 @@
             <th>Name</th>
             <th>Email</th>
             <th>Mobile</th>
+            <th>Month</th>
             <th>Total Working Days</th>
             <th>Leaves_Taken</th>
             <th>Overtime</th>
             <th>Salary_Made</th>
         </tr>
-        {% for i in salaries %}
+        {% for i in salary_paginator %}
         <tr>
             <td>{{i.employee_id.name}}</td>
             <td>{{i.employee_id.email}}</td>
             <td>{{i.employee_id.mobile}}</td>
-            <td>{{i.Total_working_days}}</td>
+            <td>{{i.month}},{{i.year}}</td>
+            <td>{{i.total_working_days}}</td>
             <td>{{i.total_leave_taken}}</td>
             <td>{{i.overtime}}</td>
             <td>{{i.Total_salary_made}}</td>
         </tr>
         {% endfor %}
     </table>
+</div>
+
+<div class="pagination">
+    {% if salary_paginator.has_previous %}
+    <a href="?page={{ salary_paginator.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    <!-- Page numbers -->
+    <span>
+        {% for num in salary_paginator.paginator.page_range %}
+        {% if salary_paginator.number == num %}
+        <strong>{{ num }}</strong>
+        {% else %}
+        <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+        {% endfor %}
+    </span>
+
+    {% if salary_paginator.has_next %}
+    <a href="?page={{ salary_paginator.next_page_number }}">Next</a>
+    {% endif %}
 </div>
 {% endblock container %}

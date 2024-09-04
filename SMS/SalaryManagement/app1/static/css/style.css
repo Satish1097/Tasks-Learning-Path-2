@@ -206,3 +206,45 @@ table tr td {
     border: 1px solid gray;
     height: 30px;
 }
+
+/*================salary pagination page=========================*/
+
+.pagination {
+    text-align: center;
+    /* Center align the pagination */
+    margin-top: 20px;
+    margin-bottom: 50px;
+    /* Add space from the content above */
+}
+
+.pagination a,
+.pagination strong {
+    display: inline-block;
+    /* Display the links as blocks */
+    margin: 0 5px;
+    /* Add some space between the links */
+    padding: 5px 10px;
+    /* Add padding to the links */
+    text-decoration: none;
+    /* Remove underlines from links */
+    color: #007bff;
+    /* Set the default color for the links */
+    border: 1px solid #007bff;
+    /* Add a border around the links */
+    border-radius: 5px;
+    /* Add rounded corners to the links */
+    transition: all 0.3s;
+    /* Add a smooth transition on hover */
+}
+
+.pagination a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination strong {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+}
