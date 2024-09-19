@@ -1,0 +1,75 @@
+{% extends "adminbase.html" %}
+{% block container %}
+{% load static %}
+{% load mathfilters %}
+<div class="row"></div>
+<div class="orders" style="margin-top: 100px;">
+    <div class="header">
+        <h2 style="color: #fff;">All Order</h2>
+    </div>
+    <table>
+        <tr>
+            <th style="color: #ffff; margin-bottom: 30px;">Total Orders: {{orders.count}}</th>
+        </tr>
+        {% for order in orders %}
+        <tr class="ordersdetails">
+            <td>
+                <div class="user">
+                    <p style="line-height: 1; color:#fff; padding: 10px 0 0 10px;">Customer</p>
+                    <span style="line-height: 2; padding-left: 10px;">{{order.user.username}}</span>
+                </div>
+            </td>
+            <td class="topdetail">
+                {% if order.shipment_status is False %}
+                <div class="shipment_status">
+                    <p style="line-height: 1; color:#fff; padding: 10px 0 0 10px;">Shipment Status:</p>
+                    <span style="line-height: 2; padding-left: 10px;">In Process</span>
+                </div>
+                {% else %}
+                <p>Shipment Status: Completed</p>
+                {% endif %}
+            </td>
+            <td>
+                <div class="shipment_status">
+                    <p style="line-height: 1;">Total Amount:</p>
+                    <span style="line-height: 2;">${{order.order_amount}}</span>
+                </div>
+            </td>
+            <td>
+                {% if order.payment_status is False %}
+                <div class="payment_status">
+                    <p style="line-height: 0; padding: 20px 10px 0px 0px;">Payment Status:</p>
+                    <span style="line-height: 3; color: red; font-weight: bold; margin-top: 10px;">Failed</span>
+                </div>
+                {% else %}
+                <div class="payment_status">
+                    <p style="line-height: 1;">Payment Status:</p>
+                    <span style="line-height: 2;">Done</span>
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+        {% for item in order.order_item.all %}
+        <tr style="color: #FFFF;">
+            <td class="pr__image">
+                <img src="{{item.product.image.url}}" alt="">
+            </td>
+            <td class="name" style="margin-top: 50px;">
+                {{item.product.name}}
+            </td>
+            <td style="margin-top: 50px;">
+                ${{item.product.price}}
+            </td>
+            <td style="margin-top: 50px;">
+                {{item.quantity}}
+            </td>
+            <td style="margin-top: 50px;">
+                Total: ${{item.quantity|mul:item.product.price}}
+            </td>
+
+        </tr>
+        {% endfor %}
+        {% endfor %}
+    </table>
+</div>
+{% endblock container %}

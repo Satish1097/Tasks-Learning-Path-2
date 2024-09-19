@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+{% block container %}
+    {% load static %}
+<!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="{% static 'images/breadcrumb.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Checkout</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/">Home</a>
+                            <span>Checkout</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Breadcrumb Section End -->
+
+<!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h6><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click here</a> to enter your code
+                    </h6>
+                </div>
+            </div>
+            <div class="checkout__form">
+                <h4>Billing Details</h4>
+                <p>Enable more payment method types <a href="https://dashboard.stripe.com/settings/payment_methods"
+                                                       target="_blank">in your
+                    dashboard</a>.</p>
+                <form id="payment-form" method="POST">
+                    {% csrf_token %}
+                    <div id="link-authentication-element">
+                    <!-- Elements will create authentication element here -->
+                    </div>
+                    <div id="payment-element">
+                    <!-- Elements will create form elements here -->
+                    </div>
+                    <div id="error-message">
+                    <!-- Display error message to your customers here -->
+                    </div>
+                    <div id="messages" role="alert" style="display: none;"></div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="checkout__order">
+                            <h4>Your Order</h4>
+                            <div class="checkout__order__products">Products <span>Total</span></div>
+                            <ul>
+                                {% for cart_item in cart_items %}
+                                    {% if cart_item.product.stock > 0 %}
+                                        <li>{{cart_item.product.name}}<span>${{cart_item.product_amount}}</span></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                            <div class="checkout__order__subtotal">Subtotal <span>${{total_amount}}</span></div>
+                            <div class="checkout__order__total">Total <span>${{total_amount}}</span></div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua.</p>
+                            <button type="submit" class="site-btn">PLACE ORDER & PAY</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </section>
+<!-- Checkout Section End -->
+    <script>
+
+        document.addEventListener('DOMContentLoaded', async () => {
+        // Load the publishable key from the server. The publishable key
+        // is set in your .env file.
+            const { publishableKey } = await fetch('/config').then((r) => r.json());
+            if (!publishableKey) {
+                addMessage(
+                    'No publishable key returned from the server. Please check `.env` and try again'
+                );
+                alert('Please set your Stripe publishable API key in the .env file');
+            }
+
+            const stripe = Stripe(publishableKey, {
+                apiVersion: '2020-08-27',
+            });
+
+        // On page load, we create a PaymentIntent on the server so that we have its clientSecret to
+        // initialize the instance of Elements below. The PaymentIntent settings configure which payment
+        // method types to display in the PaymentElement.
+            const {
+                error: backendError,
+                clientSecret
+            } = await fetch('/create-payment-intent').then(r => r.json());
+            if (backendError) {
+                addMessage(backendError.message);
+            }
+            addMessage(`Client secret returned.`);
+
+        // Initialize Stripe Elements with the PaymentIntent's clientSecret,
+        // then mount the payment element.
+            const loader = 'auto'
+            const elements = stripe.elements({ clientSecret, loader });
+            const paymentElement = elements.create('payment');
+            paymentElement.mount('#payment-element');
+        // Create and mount the linkAuthentication Element to enable autofilling customer payment details
+            const linkAuthenticationElement = elements.create("linkAuthentication");
+            linkAuthenticationElement.mount("#link-authentication-element");
+        // If the customer's email is known when the page is loaded, you can
+        // pass the email to the linkAuthenticationElement on mount:
+        //
+        //   linkAuthenticationElement.mount("#link-authentication-element",  {
+        //     defaultValues: {
+        //       email: 'jenny.rosen@example.com',
+        //     }
+        //   })
+        // If you need access to the email address entered:
+        //
+        //  linkAuthenticationElement.on('change', (event) => {
+        //    const email = event.value.email;
+        //    console.log({ email });
+        //  })
+
+        // When the form is submitted...
+            const form = document.getElementById('payment-form');
+            let submitted = false;
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+            // Disable double submission of the form
+                if (submitted) { return; }
+                submitted = true;
+                form.querySelector('button').disabled = true;
+
+                const nameInput = document.querySelector('#name');
+
+            // Confirm the payment given the clientSecret
+            // from the payment intent that was just created on
+            // the server.
+                const { error: stripeError } = await stripe.confirmPayment({
+                    elements,
+                    confirmParams: {
+                        return_url: `${window.location.origin}/return.html`,
+                    }
+                });
+
+                if (stripeError) {
+                    addMessage(stripeError.message);
+
+                // reenable the form.
+                    submitted = false;
+                    form.querySelector('button').disabled = false;
+                    return;
+                }
+            });
+        });
+
+
+        const stripe = Stripe('pk_test_51PxW8o01XYwMHhMGHe0Na8RFAK6RPDcJ5nwEDAU6V0kzeaEnfOOJqkvternUdWQYHrlGq0h6BsbctsvwzGr8A1Ef00dbwaReLH');
+
+        const appearance = { /* appearance */ };
+        const options = {
+            business: "RocketRides"
+        };
+        const clientSecret = { CLIENT_SECRET };
+        const elements = stripe.elements(appearance, clientSecret);
+        const paymentElement = elements.create('payment', options);
+        paymentElement.mount('#payment-element');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+        :root {
+            --light-grey: #F6F9FC;
+            --dark-terminal-color: #0A2540;
+            --accent-color: #635BFF;
+            --radius: 3px;
+        }
+
+        main {
+            width: 480px;
+        }
+
+        form>* {
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: var(--accent-color);
+        }
+
+        button {
+            background: var(--accent-color);
+            border-radius: var(--radius);
+            color: white;
+            border: 0;
+            padding: 12px 16px;
+            margin-top: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: block;
+        }
+
+        button:hover {
+            filter: contrast(115%);
+        }
+
+        button:active {
+            transform: translateY(0px) scale(0.98);
+            filter: brightness(0.9);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: none;
+        }
+
+        input,
+        select {
+            display: block;
+            font-size: 1.1em;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+        }
+
+        a {
+            color: var(--accent-color);
+            font-weight: 900;
+        }
+
+        small {
+            font-size: .6em;
+        }
+
+        fieldset,
+        input,
+        select {
+            border: 1px solid #efefef;
+        }
+
+        #payment-form {
+            border: #F6F9FC solid 1px;
+            border-radius: var(--radius);
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 30px 50px -20px rgb(50 50 93 / 25%), 0 30px 60px -30px rgb(0 0 0 / 30%);
+        }
+
+        #messages {
+            font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New';
+            display: none;
+        /* hide initially, then show once the first message arrives */
+            background-color: #0A253C;
+            color: #00D924;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: var(--radius);
+            font-size: 0.7em;
+        }
+    </style>
+{% endblock container %}

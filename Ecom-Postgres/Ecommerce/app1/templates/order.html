@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% block container %}
+{% load static %}
+{% load mathfilters %}
+<style>
+    .orders .header {
+        text-align: center;
+    }
+
+    .orders .header h2 {
+        font-size: 40px;
+    }
+
+    .orders .menu {
+        width: 70%;
+        margin: 30px auto;
+        border-bottom: 1px solid gray;
+    }
+
+    .orders .menu ul {
+        width: 300px;
+        display: flex;
+        justify-content: space-around;
+        margin: auto;
+    }
+
+    .orders .menu ul li {
+        list-style: none;
+    }
+
+    .orders .menu ul li a {
+        color: black;
+        font-weight: 600;
+    }
+
+    .orders .menu ul li a:hover {
+        color: #7FAD39;
+    }
+
+    .orders table {
+        width: 70%;
+        margin: 50px auto;
+    }
+
+    .orders table tr {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .orders table .ordersdetails {
+        background-color: #7FAD39;
+        border-bottom: 2px solid gray;
+        height: 70px;
+    }
+
+    .orders table tr .pr__image img {
+        height: 100px;
+        width: 100px;
+        margin-bottom: 20px;
+    }
+
+    .orders table tr td .payment_status a {
+        color: blue;
+        font-weight: bold;
+        padding-right: 10px;
+    }
+
+    .orders table tr td p {
+        color: #ffff;
+        padding-top: 10px;
+    }
+</style>
+<section class="breadcrumb-section set-bg" data-setbg="{% static 'images/breadcrumb.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <div class="breadcrumb__option">
+                        <a href="/">Home</a>
+                        <span>Orders</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="row"></div>
+<div class="orders">
+    <div class="header">
+        <h2>Your Order</h2>
+    </div>
+    <div class="menu">
+        <ul>
+            <li><a href="">Order</a></li>
+            <li><a href="">Cancelled Order</a></li>
+        </ul>
+    </div>
+    <table>
+        <tr>
+            <th>Total Orders: {{orders.count}}</th>
+        </tr>
+        {% for order in orders %}
+        <tr class="ordersdetails">
+            <td class="topdetail">
+                {% if order.shipment_status is False %}
+                <div class="shipment_status">
+                    <p style="line-height: 1; color:#fff; padding: 10px 0 0 10px;">Shipment Status:</p>
+                    <span style="line-height: 0; padding-left: 10px;">In Process</span>
+                </div>
+                {% else %}
+                <p>Shipment Status: Completed</p>
+                {% endif %}
+            </td>
+            <td>
+                <div class="shipment_status">
+                    <p style="line-height: 1;">Total Amount:</p>
+                    <span style="line-height: 0;">${{order.order_amount}}</span>
+                </div>
+            </td>
+            <td>
+                {% if order.payment_status is False %}
+                <div class="payment_status">
+                    <p style="line-height: 0; padding: 20px 10px 0px 0px;">Payment Status:</p>
+                    <span style="line-height: 0; color: red; font-weight: bold;">Failed</span>
+                    <a href="{% url 'pay_again' order.orderid %}">Pay Again</a>
+                </div>
+                {% else %}
+                <div class="payment_status">
+                    <p style="line-height: 1;">Payment Status:</p>
+                    <span style="line-height: 0;">Done</span>
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+        {% for item in order.order_item.all %}
+        <tr>
+            <td class="pr__image">
+                <img src="{{item.product.image.url}}" alt="">
+            </td>
+            <td class="name">
+                {{item.product.name}}
+            </td>
+            <td>
+                ${{item.product.price}}
+            </td>
+            <td>
+                {{item.quantity}}
+            </td>
+            <td>
+                Total: ${{item.quantity|mul:item.product.price}}
+            </td>
+
+        </tr>
+        {% endfor %}
+        {% endfor %}
+    </table>
+</div>
+{% endblock container %}

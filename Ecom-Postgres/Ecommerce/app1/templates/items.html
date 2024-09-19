@@ -1,0 +1,31 @@
+{% extends "adminbase.html" %}
+{% block container %}
+{% load static %}
+<div class="row"></div>
+<div class="orders" style="margin-top: 100px;">
+    <div class="header">
+        <h2 style="color: #fff;">All Order</h2>
+    </div>
+    <table>
+        <tr style="color: #fff; border-bottom: 2px solid gray; margin-bottom: 30px;">
+            <th>Product</th>
+            <th>Product Name</th>
+            <th>Price</th>
+
+        </tr>
+        {% for item in items %}
+        <tr style="color: #FFFF;">
+            <td class="pr__image">
+                <img src="{{item.image.url}}" alt="">
+            </td>
+            <td class="name" style="margin-top: 50px;">
+                {{item.name}}
+            </td>
+            <td style="margin-top: 50px;">
+                ${{item.price}}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock container %}

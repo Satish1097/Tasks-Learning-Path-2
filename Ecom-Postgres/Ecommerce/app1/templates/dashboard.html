@@ -1,0 +1,154 @@
+{% extends "adminbase.html" %}
+{% block container %}
+<div class="dashboard">
+    <!-- <div class="sidenav" id="sidenav">
+        <div class="logo">
+            <div class="iconlogo">
+                <i class="fa-solid fa-globe"></i>
+            </div>
+            <span>Admin</span>
+        </div>
+
+        <div class="profile">
+            <img src="images/st.jpg" alt="">
+            <div class="text">
+                <p>Satish kumar</p>
+                <p style="color: gray; margin-top: 0px;">Admin</p>
+            </div>
+        </div>
+        <ul>
+            <li><a id="c" href=""><i class="fa-solid fa-gauge"></i><span id="s">Dashboard</span></a></li>
+            <li><a href=""><i class="fa-brands fa-wpforms"></i><span>Forms</span></a></li>
+            <li><a href=""><i class="fa-solid fa-laptop-code"></i><span>Element</span></a></li>
+            <li><a href=""><i class="fa-solid fa-chart-line"></i><span>Chart</span></a></li>
+            <li><a href=""><i class="fa-regular fa-file-lines"></i><span>Pages</span></a></li>
+        </ul>
+
+        <li id="li"><a href=""><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a></li>
+    </div> -->
+    <div class="board" id="board">
+        <div class="bottom">
+            <div class="card">
+                <div class="scard">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <div class="text">
+                        <p>Today Sale</p>
+                        <span>${{today_sale}}</span>
+                    </div>
+                </div>
+                <div class="scard">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <div class="text">
+                        <p>Last Month Sale</p>
+                        <span>${{last_month_sale}}</span>
+                    </div>
+                </div>
+                <div class="scard">
+                    <i class="fa-solid fa-chart-area"></i>
+                    <div class="text">
+                        <p>Total Orders</p>
+                        <span>{{allorders.count}}</span>
+                    </div>
+                </div>
+                <div class="scard">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <div class="text">
+                        <p>Total Sale</p>
+                        <span>${{total_price}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chart">
+                <div class="sale">
+                    <div class="top">
+                        <p>Orders</p>
+                        <a href="">View All</a>
+                    </div>
+                    <div class="botom">
+                        <table>
+                            <thead>
+                                <th>OrderId</th>
+                                <th>Payment Status</th>
+                            </thead>
+                            <tbody>
+                                {% for order in orders %}
+                                <td>{{order.orderid}}</td>
+                                <td>{{order.payment_status}}</td>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                        <div class="pagination-bottom">
+                            {% if orders.has_previous %}
+                            <a href="?page={{ orders.previous_page_number }}">Previous</a>
+                            {% endif %}
+
+                            <!-- Page numbers -->
+                            <span>
+                                {% for num in orders.paginator.page_range %}
+                                {% if orders.number == num %}
+                                <strong>{{ num }}</strong>
+                                {% else %}
+                                <a href="?page={{ num }}">{{ num }}</a>
+                                {% endif %}
+                                {% endfor %}
+                            </span>
+
+                            {% if orders.has_next %}
+                            <a href="?page={{ orders.next_page_number }}">Next</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="revenue">
+                    <div class="top">
+                        <p>Customers</p>
+                        <a href="">View All</a>
+                    </div>
+                    <div class="botom">
+                        <table>
+                            <thead>
+                                <th>UserName</th>
+                                <th>Email</th>
+                            </thead>
+                            <tbody>
+                                {% for user in users %}
+                                <td>{{user.username}}</td>
+                                <td>{{user.email}}</td>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                        <div class="pagination-bottom">
+                            {% if users.has_previous %}
+                            <a href="?pagenum={{ users.previous_page_number }}">Previous</a>
+                            {% endif %}
+
+                            <!-- Page numbers -->
+                            <span>
+                                {% for num in users.paginator.page_range %}
+                                {% if users.number == num %}
+                                <strong>{{ num }}</strong>
+                                {% else %}
+                                <a href="?pagenum={{ num }}">{{ num }}</a>
+                                {% endif %}
+                                {% endfor %}
+                            </span>
+
+                            {% if users.has_next %}
+                            <a href="?pagenum={{ users.next_page_number }}">Next</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <p>&copy;<a href="">2024 Variable World.</a> All Rights Reserved.</p>
+                <div class="designer">
+                    <p>Designed By: Satish Kumar</p>
+                    <span>Variable</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock container %}

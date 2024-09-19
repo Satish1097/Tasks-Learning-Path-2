@@ -1,0 +1,56 @@
+{% block header %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <script src="https://kit.fontawesome.com/cb91b67637.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="topnav">
+        <button onclick="openmenu()"><i class="fa-solid fa-bars-staggered" id="icon"></i></button>
+        <ul class="menu" id="menu">
+            <li><a href="/admindashboard">Home</a></li>
+            <li><a href="itemlists">Items</a></li>
+            <li><a href="userlists">Users</a></li>
+            <li><a href="orderlists">Orders</a></li>
+        </ul>
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search here...">
+        </div>
+        <li id="notif"><i class="fa-solid fa-bell"></i><span>Notification</span></li>
+        <img src="images/st.jpg" alt="">
+    </div>
+    {% endblock header %}
+    {% block container %}{% endblock container %}
+    {% block footer %}
+    <script>
+        // function openmenu() {
+        //     var x = document.getElementById('menu');
+        //     x.style.left = '0%';
+        // }
+
+        const openmenu = () => {
+            var x = document.getElementById('menu')
+            var icon = document.getElementById('icon')
+            if (x.style.left == '-100%') {
+                x.style.left = "0px";
+                icon.className = 'fa fa-times';
+            }
+            else {
+                x.style.left = '-100%'
+                icon.className = 'fa-solid fa-bars-staggered'
+            }
+
+        }
+    </script>
+</body>
+
+</html>
+{% endblock footer %}

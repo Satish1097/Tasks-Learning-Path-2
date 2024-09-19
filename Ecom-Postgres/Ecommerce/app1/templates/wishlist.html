@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block container %}
+    {% load static %}
+    <style>
+        td .view:hover {
+            color: #7FAD39;
+        }
+    </style>
+    <section class="breadcrumb-section set-bg" data-setbg="{% static 'images/breadcrumb.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Vegetable’s Package</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/">Home</a>
+                            <span>WishList</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="row"></div>
+    <div class="col-lg-12">
+        <div class="shoping__cart__table">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="shoping__product">Products</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                        <th>Stock Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in wishlists.product.all %}
+                        <tr>
+                            <td class="shoping__cart__item">
+                                <img src="{{product.image.url}}" alt="">
+                                <h5>{{product.name}}</h5>
+                            </td>
+                            <td class="shoping__cart__price">
+                                ${{product.price}}
+                            </td>
+                            <td>
+                                <a class="view" href="{%url 'shop_detail' product.id %}">View</a>
+                            </td>
+
+                            <td class="shoping__cart__price">
+                                {% if product.stock <= 0 %} <p style="color:red">Out of Stock</p>
+                                {% else %}
+                                    <p>{{ product.stock }}</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+{% endblock container %}
