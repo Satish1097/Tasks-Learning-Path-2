@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block container %}
+<style>
+    .paymerchant {
+        height: 300px;
+        max-width: 400px;
+        background-color: #0B1739;
+        margin: 100px auto;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .paymerchant h2 {
+        text-align: center;
+        color: #ffff;
+        padding-top: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .paymerchant form input[type="text"] {
+        width: 90%;
+        padding: 10px;
+        margin: 30px 0 0 5%;
+    }
+
+    .paymerchant form input[type="number"] {
+        width: 90%;
+        padding: 10px;
+        margin: 30px 0 0 5%;
+    }
+
+    .paymerchant form input[type="submit"] {
+        width: 100px;
+        height: 40px;
+        background-color: dodgerblue;
+        float: center;
+        border: 0;
+        outline: 0;
+        border-radius: 3px;
+        margin-top: 30px;
+    }
+</style>
+<div class="paymerchant">
+    <h2>Pay Using Contact</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Enter Mobile No." name="mobile">
+        <input type="number" placeholder="Enter Amount" name="amount">
+        <input type="submit">
+    </form>
+</div>
+{% endblock container %}

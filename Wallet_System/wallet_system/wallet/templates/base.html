@@ -1,0 +1,304 @@
+{% block header %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/cb91b67637.js" crossorigin="anonymous"></script>
+    <script>
+        const openWallet = () => {
+            var x = document.getElementById('wallet_profilex')
+            var icon = document.getElementById('icon')
+            if (x.style.left == '-100%') {
+                x.style.left = "0px";
+                icon.className = 'fa fa-times';
+            }
+            else {
+                x.style.left = '-100%'
+                icon.className = 'fa-solid fa-bars-staggered'
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            height: 10vh;
+            width: 100%;
+            background-color: #0B1739;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .navbar .logo h1 {
+            text-align: center;
+            color: #ffff;
+            margin: 15px 0 0 40px;
+        }
+
+        .navbar .authentication button {
+            width: 100px;
+            height: 40px;
+            background-color: rgb(222, 157, 222);
+            color: #fff;
+            margin-top: 15px;
+            margin-right: 30px;
+            /* margin: 15px 40px 0px 0px; */
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .navbar .authentication button a {
+            color: #ffff;
+            text-decoration: none;
+        }
+
+        .navbar .authentication #pimg {
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+            margin-top: 30px;
+        }
+
+        .navbar .authentication #pimg img {
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+        }
+
+        /*==================Registraion form==============*/
+
+        .register_container {
+            max-width: 500px;
+            background-color: #f7f3f3;
+            margin: auto;
+            display: block;
+            margin-bottom: 50px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .register_container .log {
+            padding-bottom: 30px;
+            background-color: transparent;
+            border: 0;
+            outline: 0;
+        }
+
+        .register_container h1 {
+            font-size: 25px;
+            text-align: center;
+            color: #7FAD39;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .register_container form {
+            display: block;
+        }
+
+        .register_container form label {
+            text-align: left;
+            margin-left: 5%;
+        }
+
+        .register_container form input[Type="text"] {
+            width: 90%;
+            padding: 10px;
+        }
+
+        .register_container form input[Type="email"] {
+            width: 90%;
+            padding: 10px;
+        }
+
+        .register_container form input[Type="submit"] {
+            width: 120px;
+            height: 40px;
+            background-color: #3CC032;
+            border: 0;
+            outline: 0;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+
+        /*-----------------------Login from-------------------------*/
+
+        .login_container {
+            height: 50vh;
+            max-width: 400px;
+            margin: auto;
+            background-color: rgb(209, 234, 241);
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .login_container form input {
+            width: 90%;
+            height: 40px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .login_container h1 {
+            padding-top: 20px;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .login_container a {
+            text-decoration: none;
+        }
+
+        .login_container form input[Type="submit"] {
+            width: 120px;
+            height: 40px;
+            border: 0;
+            outline: 0;
+            border-radius: 5px;
+            font-size: 16px;
+            padding: 0;
+            background-color: #3CC032;
+            color: #ffff;
+        }
+
+        .wallet_profile {
+            height: 400px;
+            width: 250px;
+            position: absolute;
+            background-color: #0B1739;
+            top: 10.5vh;
+            left: -100%;
+            color: #ffff;
+        }
+
+        .wallet_profile h1 {
+            margin-top: 15px;
+            margin-left: 30px;
+            color: #ffff;
+            font-size: 25px;
+        }
+
+        .wallet_profile ul li {
+            margin-top: 20px;
+        }
+
+        .wallet_profile ul li a {
+            color: #ffff;
+            font-size: 18px;
+            margin-left: 30px;
+            text-decoration: none;
+        }
+
+        .wallet_profile .profile {
+            display: flex;
+            /* justify-content: space-around; */
+            width: 100%;
+            background-color: red;
+            height: 80px;
+        }
+
+        .wallet_profile .profile p {
+            margin-top: 30px;
+            font-size: 20px;
+            margin-left: 20px;
+        }
+
+        .wallet_profile .bottom {
+            background-color: rgb(193, 123, 123);
+            height: 60px;
+            width: 100%;
+            position: absolute;
+            bottom: 0px;
+            display: flex;
+        }
+
+        .wallet_profile .bottom button {
+            width: 50%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .wallet_profile .bottom button i {
+            font-size: 25px;
+
+        }
+
+
+        .menubar button {
+            background-color: transparent;
+            border: 0;
+            outline: 0;
+            cursor: pointer;
+        }
+
+        .menubar button i {
+            font-size: 30px;
+            margin: 18px;
+            color: #fff;
+        }
+    </style>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %}
+    <script>alert("{{message}}")</script>{% endif %}
+    {% endfor %}
+    {% endif %}
+    <div class="navbar">
+        <div class="menubar">
+            <button onclick="openWallet()"><i class="fa-solid fa-bars-staggered" id="icon"></i></button>
+            <div class="wallet_profile" id="wallet_profilex">
+                <div class="profile">
+                    <img src="{{wallet.profile_picture.url}}" alt="" height="50px" width="50px"
+                        style="border-radius: 50%; margin-top: 15px; margin-left: 30px;">
+                    <p>{{wallet.user.first_name}} {{wallet.user.last_name}}</p>
+                </div>
+                <h1>Your Wallet</h1>
+                <ul>
+                    <li><a href="">Number: {{wallet.mobile}}</a></li>
+                    <li><a href="">Wallet Balance: {{wallet.Wallet_amount}}</a></li>
+                    <li><a href="transactionlist">Transaction History <span style="color: green;">Click</span></a></li>
+                </ul>
+                <div class="bottom">
+                    <button><a href="/"><i class="fa-solid fa-house"></i></a></button>
+                    <button><a href="../logout"><i class="fa-solid fa-power-off"></i></a></button>
+                </div>
+            </div>
+        </div>
+        <div class="logo">
+            <h1>Pay Anywhere</h1>
+        </div>
+        <div class="authentication">
+            {% if user.is_authenticated %}
+            <button><a href="add_amount">Add Amount</a></button>
+            <button><a href="paymerchant">PayMerchant</a></button>
+            {% else %}
+            <button><a href="login">Login</a></button>
+            {% endif %}
+        </div>
+    </div>
+    {% endblock header %}
+    {% block container %}{% endblock container %}
+    {% block footer %}
+</body>
+
+</html>
+{% endblock footer %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block container %}
+<style>
+    .transactionlist {
+        height: 100vh;
+        width: 100%;
+    }
+
+    .transactionlist h2 {
+        text-align: center;
+        color: #ffff;
+        padding-top: 50px;
+        padding-bottom: 20px;
+    }
+
+    .transactionlist table {
+        width: 80%;
+        border: 2px solid gray;
+        margin: 0 auto;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    .transactionlist table thead tr {
+        border: 2px solid red;
+        height: 30px;
+    }
+
+    .transactionlist table thead tr th {
+        border-right: 2px solid red;
+    }
+
+    .transactionlist table tbody tr {
+        border: 2px solid black;
+    }
+
+    .transactionlist table tbody tr td {
+        border-right: 2px solid black;
+    }
+</style>
+<div class="transactionlist">
+    <h2>Transaction History</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>S.No.</th>
+                <th>TransactionId</th>
+                <th>Amount</th>
+                <th>Receipient</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Transaction Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tdata in transactionlist %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{tdata.TransactionId}}</td>
+                <td>{{tdata.transaction_amount}}</td>
+                <td>{{tdata.receiver_mobile}}</td>
+                <td>{{tdata.type}}</td>
+                <td>{{tdata.payment_status}}</td>
+                <td>{{tdata.date_of_transaction}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock container %}

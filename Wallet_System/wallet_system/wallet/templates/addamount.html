@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block container %}
+
+<style>
+    .wallet {
+        max-width: 400px;
+        height: 250px;
+        background-color: #081028;
+        margin: 100px auto;
+        border-radius: 10px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .wallet h2 {
+        padding-top: 30px;
+    }
+
+    .wallet form {
+        display: block;
+    }
+
+    .wallet form label {
+        display: none;
+        font-weight: 600;
+        left: 0;
+    }
+
+    .wallet form input[type='number'] {
+        width: 90%;
+        padding: 10px;
+        margin-top: 20px;
+        border-radius: 3px;
+    }
+
+    .wallet form input[type='submit'] {
+        width: 100px;
+        height: 35px;
+        margin-top: 30px;
+        border-radius: 5px;
+        background-color: darkmagenta;
+        border: 0;
+        outline: 0;
+        color: #fff;
+    }
+
+    .wallet p {
+        margin-top: 20px;
+    }
+</style>
+<div class="wallet">
+    <h2>Add Ammount</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="number" name="Wallet_amount" placeholder="Enter Amount">
+        <input type="submit">
+    </form>
+    <p>Min-1, Max-100000</p>
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+{% endblock container %}
