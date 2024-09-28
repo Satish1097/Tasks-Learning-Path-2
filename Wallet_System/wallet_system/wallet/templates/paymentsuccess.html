@@ -1,4 +1,55 @@
 {% extends "base.html" %}
 {% block container %}
-<h1>Payment Done</h1>
+{% load static %}
+<style>
+    .paymentsuccess {
+        height: 300px;
+        max-width: 400px;
+        background-color: #0B1739;
+        text-align: center;
+        margin: 10% auto;
+        color: #ffff;
+    }
+
+    .paymentsuccess .png {
+        height: 70px;
+        width: 70px;
+        position: relative;
+        margin: 60px auto;
+        padding-top: 50px;
+    }
+
+    .paymentsuccess .Thank {
+        padding-top: 10px;
+    }
+
+    .paymentsuccess .day {
+        padding-top: 10px;
+        font-weight: bold;
+    }
+
+    .paymentsuccess button {
+        height: 40px;
+        width: 120px;
+        margin-top: 10px;
+        border: 0;
+        outline: 0;
+        background-color: #DE9DDE;
+    }
+
+    .paymentsuccess button a {
+        text-decoration: none;
+        color: #ffff;
+        font-weight: bold;
+    }
+</style>
+<div class="paymentsuccess">
+    <div class="png">
+        <img src="{% static 'image/correct-green-circle-20544.png' %}" alt="" height="70px" width="70px">
+    </div>
+    <h2>Payment Done!</h2>
+    <p class="Thank">Thank you for chossing us</p>
+    <p class="day">Have a great day!</p>
+    <button><a href="/">Go Back</a></button>
+</div>
 {% endblock container %}

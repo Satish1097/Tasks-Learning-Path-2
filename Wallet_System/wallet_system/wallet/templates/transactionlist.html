@@ -45,8 +45,9 @@
             <tr>
                 <th>S.No.</th>
                 <th>TransactionId</th>
+                <th>Payment_Id</th>
                 <th>Amount</th>
-                <th>Receipient</th>
+                {% comment %} <th>Receipient</th> {% endcomment %}
                 <th>Type</th>
                 <th>Status</th>
                 <th>Transaction Time</th>
@@ -57,8 +58,9 @@
             <tr>
                 <td>{{forloop.counter}}</td>
                 <td>{{tdata.TransactionId}}</td>
+                <td>{{tdata.payment_id}}</td>
                 <td>{{tdata.transaction_amount}}</td>
-                <td>{{tdata.receiver_mobile}}</td>
+                {% comment %} <td>{{tdata.receiver_mobile}}</td> {% endcomment %}
                 <td>{{tdata.type}}</td>
                 <td>{{tdata.payment_status}}</td>
                 <td>{{tdata.date_of_transaction}}</td>

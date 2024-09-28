@@ -157,6 +157,6 @@ CELERY_BEAT_SHEDULAR = "django_celery_beat.schedulers.DatabaseSchedulers"
 CELERY_BEAT_SCHEDULE = {
     "every 2nd day of the month": {
         "task": "app1.tasks.run_parallel_salary_processing",
-        "schedule": crontab(0, 0, day_of_month="2"),
+        "schedule": 10.0,
     }
 }

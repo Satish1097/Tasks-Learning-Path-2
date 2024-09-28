@@ -11,6 +11,7 @@ from django.http import HttpResponseBadRequest
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.db import transaction
+from django.utils.crypto import get_random_string
 
 
 def home(request):
@@ -104,7 +105,7 @@ def add_amount(request):
             if wallet:
                 if request.method == "POST":
                     x = request.POST.get("Wallet_amount")
-                    if int(x) > 0:
+                    if int(x) > 0 and int(x) < 100000:
                         amount = int(x)
                         currency = "INR"
                         client = razorpay.Client(
@@ -173,7 +174,12 @@ def paymenthandler(request):
 
                     # Create a new Transaction_detail object for successful payment
                     create_transaction(
-                        request.user, amount / 100, "credit", "success", "Wallet"
+                        request.user,
+                        amount / 100,
+                        "credit",
+                        "success",
+                        "Wallet",
+                        payment_id,
                     )
 
                     # Update the wallet balance
@@ -189,8 +195,8 @@ def paymenthandler(request):
                         recipient_list=[request.user.email],
                         fail_silently=True,
                     )
-
                     return render(request, "paymentsuccess.html")
+
                 except Exception as e:  # Payment capture failed
                     # Create a new Transaction_detail object for failed payment
                     create_transaction(
@@ -201,14 +207,23 @@ def paymenthandler(request):
             else:
                 # Signature verification failed
                 create_transaction(
-                    request.user, amount / 100, "credit", "pending", "Wallet"
+                    request.user,
+                    amount / 100,
+                    "credit",
+                    "pending",
+                    "Wallet",
+                    payment_id,
                 )
                 messages.error(request, "Signature verification failed.")
                 return render(request, "paymentfail.html")
         except Exception as e:
-            # Handle other errors
             create_transaction(
-                request.user, amount / 100, "credit", "pending", "Wallet"
+                request.user,
+                amount / 100,
+                "credit",
+                "pending",
+                "Wallet",
+                payment_id,
             )
             messages.error(request, f"Error: {str(e)}")
             return render(request, "paymentfail.html")
@@ -218,13 +233,16 @@ def paymenthandler(request):
         )
 
 
-def create_transaction(user, amount, transaction_type, payment_status, receiver):
+def create_transaction(
+    user, amount, transaction_type, payment_status, receiver, payment_id
+):
     transaction = Transaction_detail(
         user=user,
         transaction_amount=amount,
         type=transaction_type,
         payment_status=payment_status,
         receiver_mobile=receiver,
+        payment_id=payment_id,
     )
     transaction.save()
 
@@ -256,21 +274,29 @@ def paymerchant(request):
                             reciever_wallet.Wallet_amount += float(amount)
                             wallet.save()
                             reciever_wallet.save()
+                    unique_id1 = get_random_string(length=12)
+                    unique_id2 = get_random_string(length=13)
                     transaction.on_commit(
                         lambda: (
                             create_transaction(
-                                request.user, amount, "debit", "success", mobile
+                                request.user,
+                                amount,
+                                "debit",
+                                "success",
+                                mobile,
+                                unique_id1,
                             ),
                             create_transaction(
                                 reciever_wallet.user,
                                 amount,
                                 "credit",
                                 "success",
-                                "self",
+                                wallet.mobile,
+                                unique_id2,
                             ),
                         )
                     )
-                    return redirect("/")
+                    return render(request, "paymentsuccess.html")
                 else:
                     messages.error(request, "User not Exists with this number")
                     return redirect("../paymerchant")
@@ -303,3 +329,35 @@ def transactionlist(request):
             return redirect("createwallet")
     else:
         return redirect("login")
+
+
+def error_404_view(request, exception):
+    status_code = 404
+    message = "Page Not Found"
+    return render(
+        request, "errorpage.html", {"status_code": status_code, "message": message}
+    )
+
+
+def error_400_view(request, exception):
+    status_code = 400
+    message = "Bad Request"
+    return render(
+        request, "errorpage.html", {"status_code": status_code, "message": message}
+    )
+
+
+def error_500_view(request):
+    status_code = 500
+    message = "Server Error"
+    return render(
+        request, "errorpage.html", {"status_code": status_code, "message": message}
+    )
+
+
+def error_401_view(request):
+    status_code = 401
+    message = "Unauthorized User"
+    return render(
+        request, "errorpage.html", {"status_code": status_code, "message": message}
+    )

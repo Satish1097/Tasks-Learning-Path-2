@@ -1,4 +1,5 @@
 from pathlib import Path
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,30 +17,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-import os
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-        },
-    },
-    "root": {
-        "handlers": ["console"],
-        "level": "WARNING",
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["console"],
-            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
-            "propagate": False,
-        },
-    },
-}
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,6 +30,7 @@ INSTALLED_APPS = [
     "django_template_maths",
     "django_crontab",
     "django_celery_beat",
+    "django_celery_results",
 ]
 
 MIDDLEWARE = [
@@ -159,6 +137,31 @@ EMAIL_USE_SSL = False
 EMAIL_HOST_USER = "smartxcodeotp@gmail.com"
 EMAIL_HOST_PASSWORD = "xpdptwmxgzqcdrue"
 
-CRONJOBS = [
-    ("*/1 * * * *", "django.wallet.management.commands.call_command", ["paystatus"]),
-]
+# /*===========Celery Config==============*/
+
+CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER = "json"
+CELERY_TIMEZONE = "Asia/Kolkata"
+
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_CACHE_BACKEND = "django-cache"
+CELERY_CACHE_BACKEND = "default"
+CELERY_IMPORTS = ("wallet.tasks",)
+
+
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+
+# CRONJOBS = [
+#     ("*/1 * * * *", "django.wallet.management.commands.call_command", ["paystatus"]),
+# ]
+
+CELERY_BEAT_SHEDULAR = "django_celery_beat.schedulers.DatabaseSchedulers"
+
+CELERY_BEAT_SCHEDULE = {
+    "every 30 seconds": {
+        "task": "wallet.tasks.check_pay_status",
+        "schedule": 30.0,
+    }
+}

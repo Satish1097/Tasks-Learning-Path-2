@@ -41,6 +41,7 @@ class Transaction_detail(models.Model):
     )
     receiver_mobile = models.CharField(max_length=13, blank=False, null=False)
     date_of_transaction = models.DateTimeField(auto_now_add=True)
+    payment_id = models.CharField(max_length=100, unique=True, null=True)
 
     def __str__(self):
         return self.user.username
